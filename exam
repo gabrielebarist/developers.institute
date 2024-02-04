@@ -1,3 +1,5 @@
+import string
+
 from utils import unzip_with_7z
 
 zip_file_path = 'congrats.7z' # keep as is
@@ -10,15 +12,17 @@ secret_password = find_me + 'bcmpda'
 
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
+
 for first_letter in alphabet:
     for second_letter in alphabet:
         find_me = first_letter + second_letter
+        secret_password = find_me + 'bcmpda'
+
+        if unzip_with_7z(r'C:\Users\Gabriele\Desktop\file', dest_path, secret_password):
+            print(f"Password found: {secret_password}")
+            break
 
 
-    secret_password = find_me + 'bcmpda'
-    success = unzip_with_7z(zip_file_path, dest_path, secret_password)
-    if success:
-        print(f"Password found: {secret_password}")
-        break
-    else:
-        print(f"Failed attempt: {secret_password}")
+
+
+
